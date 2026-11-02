@@ -126,10 +126,10 @@ const handleChange = (event) => {
       });
 
       setSuccess(response.data?.message || "Account created successfully.");
-          router.push("/login");
+          setStep(1);
+           router.push("/login");
 
-    //   setTimeout(() => {
-    //   }, 1000);
+    
     } catch (err) {
       setError(
         err.response?.data?.message ||

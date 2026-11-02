@@ -104,7 +104,7 @@ const route = useRouter()
                     type="phone"
                     name="phone"
                     required
-                    autoComplete="phone"
+                    autoComplete="mobile"
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
