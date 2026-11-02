@@ -542,7 +542,7 @@ const Page = () => {
             accent="bg-cyan-50"
           />
 
-          <StatCard
+          {/* <StatCard
             title="4 Star Reviews"
             value={stats.fourStarReviews ?? 0}
             icon="👍"
@@ -556,7 +556,7 @@ const Page = () => {
             icon="🌟"
             detail="Customer rating submissions"
             accent="bg-orange-50"
-          />
+          /> */}
         </div>
 
         {/* ================= CHARTS ================= */}

@@ -449,7 +449,7 @@ const AddDataForm = () => {
                 <img
                   src={activeHelp.image}
                   alt={activeHelp.title}
-                  className="max-h-36 w-full rounded-xl object-contain"
+                  className="  w-full rounded-xl object-contain"
                 />
               </div>
 
