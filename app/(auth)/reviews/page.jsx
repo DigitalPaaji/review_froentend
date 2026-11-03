@@ -4,11 +4,16 @@
 import { base_url } from "@/components/utils";
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
+import { FiMail, FiPhone } from "react-icons/fi";
 
 const Page = () => {
   const [allReviews, setAllReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+
+   console.log(allReviews)
+
 
   const getReviews = useCallback(async () => {
     try {
@@ -222,59 +227,80 @@ const Page = () => {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2">
 
-              {allReviews.map((review) => (
-                <div
-                  key={review._id}
-                  className="rounded-xl border border-gray-200 bg-white p-5 transition duration-300 hover:border-indigo-200 hover:shadow-md"
-                >
-                  {/* Customer */}
-                  <div className="mb-4 flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-50 text-lg font-bold text-indigo-600">
-                        C
-                      </div>
+             {allReviews.map((review) => (
+  <div
+    key={review._id}
+    className="rounded-xl border border-gray-200 bg-white p-5 transition duration-300 hover:border-indigo-200 hover:shadow-md"
+  >
+    {/* Header */}
+    <div className="mb-4 flex items-center justify-between gap-3">
+      <div className="flex gap-3 items-center">
+      <div className="flex min-w-0 items-start gap-3">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-lg font-bold text-indigo-600">
+          {review?.user?.name?.charAt(0)?.toUpperCase() || "U"}
+        </div>
 
-                      <div>
-                        <p className="text-sm font-bold text-gray-800">
-                          Customer
-                        </p>
+        <div className="min-w-0">
+          <p className="text-sm font-bold text-gray-800">
+            {review?.user?.name || "Anonymous"}
+          </p>
 
-                        <p className="mt-1 text-xs text-gray-400">
-                          Customer Feedback
-                        </p>
-                      </div>
-                    </div>
+          <p className="mt-1 text-xs text-gray-400">
+            Customer Feedback
+          </p>
 
-                    <span className="rounded-lg bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
-                      Review
-                    </span>
-                  </div>
+         
+          
+        </div>
+      </div>
+<div>
 
-                  {/* Rating */}
-                  <div className="mb-3 flex items-center gap-2">
-                    <StarRating rating={review.rating} />
-                    <span className="text-xs font-bold text-gray-600">
-                      {review.rating}.0
-                    </span>
-                  </div>
+<div className=" flex items-center gap-2 text-xs text-gray-500">
+            <FiMail size={13} className="shrink-0 text-indigo-500" />
+            <span className="truncate">
+              {review?.user?.email || "No email available"}
+            </span>
+          </div>
 
-                  {/* Review Text */}
-                  <p className="text-sm leading-7 text-gray-600">
-                    "{review.text}"
-                  </p>
+        
+          <div className="mt-1 flex items-center gap-2 text-xs text-gray-500">
+            <FiPhone size={13} className="shrink-0 text-indigo-500" />
+            <span>
+              {review?.user?.phonenumber || "No phone available"}
+            </span>
+          </div>
+  </div>
+</div>
+      <span className="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+        Review
+      </span>
+    </div>
 
-                  {/* Footer */}
-                  <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
-                    <span className="text-xs text-gray-400">
-                      {formatDate(review.time)}
-                    </span>
+    {/* Rating */}
+    <div className="mb-3 flex items-center gap-2">
+      <StarRating rating={review.rating} />
+      <span className="text-xs font-bold text-gray-600">
+        {review.rating}.0
+      </span>
+    </div>
 
-                    <span className="text-xs font-medium text-indigo-600">
-                      Customer Review
-                    </span>
-                  </div>
-                </div>
-              ))}
+    {/* Review Text */}
+    <p className="text-sm leading-7 text-gray-600">
+      "{review.text}"
+    </p>
+
+    {/* Footer */}
+    <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+      <span className="text-xs text-gray-400">
+        {formatDate(review.time)}
+      </span>
+
+      <span className="text-xs font-medium text-indigo-600">
+        Customer Review
+      </span>
+    </div>
+  </div>
+))}
 
             </div>
           )}
